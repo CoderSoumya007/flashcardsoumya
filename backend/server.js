@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 // API routes
 app.get('/',(req,res) => {
-  console.log("hello");
+  res.send("Server is running!");
 })
 app.get('/api/flashcards', (req, res) => {
   db.query('SELECT * FROM flashcards', (err, results) => {
