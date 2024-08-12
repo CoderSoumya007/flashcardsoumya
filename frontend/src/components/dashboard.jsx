@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const fetchFlashcards = async () => {
     try {
-      const response = await axios.get("https://tuf-flashcard-backend.vercel.app/api/flashcards");
+      const response = await axios.get("https://coderealm.onrender.com/api/flashcards");
       setFlashcards(response.data);
     } catch (error) {
       console.error("Error fetching flashcards:", error);
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   const handleAdd = async () => {
     try {
-      await axios.post("https://tuf-flashcard-backend.vercel.app/api/flashcards", newCard);
+      await axios.post("https://coderealm.onrender.com/api/flashcards", newCard);
       fetchFlashcards();
       setNewCard({ question: "", answer: "" });
       onClose();
@@ -40,7 +40,7 @@ const Dashboard = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`https://tuf-flashcard-backend.vercel.app/api/flashcards/${editCard.id}`, editCard);
+      await axios.put(`https://coderealm.onrender.com/api/flashcards/${editCard.id}`, editCard);
       fetchFlashcards();
       setEditCard({ id: null, question: "", answer: "" });
       onClose();
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://tuf-flashcard-backend.vercel.app/api/flashcards/${id}`);
+      await axios.delete(`https://coderealm.onrender.com/api/flashcards/${id}`);
       fetchFlashcards();
       onClose();
     } catch (error) {

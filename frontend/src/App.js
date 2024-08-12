@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   const fetchFlashcards = async () => {
-    const response = await axios.get("https://tuf-flashcard-backend.vercel.app/api/flashcards");
+    const response = await axios.get("https://coderealm.onrender.com/api/flashcards");
     setFlashcards(response.data);
   };
 
