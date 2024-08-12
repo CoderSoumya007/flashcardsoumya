@@ -1,0 +1,30 @@
+.flashcard-form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .flashcard-form input {
+    margin: 5px;
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .flashcard-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #1effec;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .flashcard-form button:hover {
+    background-color: #1c86ee;
+  }
+  
+
+  

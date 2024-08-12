@@ -1,0 +1,158 @@
+/* Container for the flashcard */
+.flashcard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+/* Base styling for the flashcard */
+.flashcard {
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+  position: relative;
+  transition: transform 0.6s;
+}
+
+/* Inner container for flip animation */
+.flashcard-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+/* Flip effect */
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front side styling */
+.flashcard-front, .flashcard-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Front side */
+.flashcard-front {
+  background: #1e90ff;
+}
+
+/* Back side */
+.flashcard-back {
+  background: #ff6347;
+  transform: rotateY(180deg);
+}
+
+/* Edit icon styling */
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #fff;
+  color: #1e90ff;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  z-index: 10;
+}
+
+.edit-icon:hover {
+  background: #1e90ff;
+  color: #fff;
+}
+
+/* Edit form container */
+.edit-form-container {
+  position: absolute;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Form styling */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Edit form specific inputs */
+.edit-form input {
+  margin: 8px 0;
+  padding: 12px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.edit-form input:focus {
+  outline: none;
+  border-color: #1e90ff;
+  box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+/* Buttons inside form */
+.edit-form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.edit-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+  margin: .2rem;
+}
+
+.edit-form button[type="submit"] {
+  background-color: #1e90ff;
+  color: #fff;
+}
+
+.edit-form button[type="submit"]:hover {
+  background-color: #1c86ee;
+  transform: scale(1.05);
+}
+
+.edit-form button[type="button"] {
+  background-color: #ccc;
+  color: #000;
+}
+
+.edit-form button[type="button"]:hover {
+  background-color: #bbb;
+  transform: scale(1.05);
+}
+
+.delete-button {
+  background-color: #ff6347;
+  color: #fff;
+}
+
+.delete-button:hover {
+  background-color: #e55347;
+  transform: scale(1.05);
+}
+
