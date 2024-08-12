@@ -35,6 +35,9 @@ db.connect((err) => {
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 // API routes
+app.get('/',(req,res) => {
+  console.log("hello");
+})
 app.get('/api/flashcards', (req, res) => {
   db.query('SELECT * FROM flashcards', (err, results) => {
     if (err) {
@@ -85,6 +88,7 @@ app.delete('/api/flashcards/:id', (req, res) => {
 
 // Route all requests to the React app
 app.get('*', (req, res) => {
+  
   res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 });
 
