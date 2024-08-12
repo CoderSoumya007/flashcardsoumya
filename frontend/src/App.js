@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   const fetchFlashcards = async () => {
-    const response = await axios.get("https://coderealm.onrender.com/api/flashcards");
+    const response = await axios.get("https://flashcardsoumya.onrender.com/api/flashcards");
     setFlashcards(response.data);
   };
 
