@@ -35,7 +35,7 @@ db.connect((err) => {
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 // API routes
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
   res.send("Server is running!");
 })
 app.get('/api/flashcards', (req, res) => {
@@ -49,17 +49,31 @@ app.get('/api/flashcards', (req, res) => {
 
 app.post('/api/flashcards', (req, res) => {
   const { question, answer } = req.body;
-  db.query(
-    'INSERT INTO flashcards (question, answer) VALUES (?, ?)',
-    [question, answer],
-    (err, result) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.status(201).json({ id: result.insertId, question, answer });
+
+  // Fetch the current maximum ID
+  db.query('SELECT MAX(id) AS maxId FROM flashcards', (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
     }
-  );
+
+    // Determine the new ID
+    const maxId = result[0].maxId;
+    const newId = (maxId === null) ? 1 : maxId + 1; // Start with 1 if no records exist
+
+    // Insert the new flashcard with the new ID
+    db.query(
+      'INSERT INTO flashcards (id, question, answer) VALUES (?, ?, ?)',
+      [newId, question, answer],
+      (err) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.status(201).json({ id: newId, question, answer });
+      }
+    );
+  });
 });
+
 
 app.put('/api/flashcards/:id', (req, res) => {
   const { id } = req.params;
