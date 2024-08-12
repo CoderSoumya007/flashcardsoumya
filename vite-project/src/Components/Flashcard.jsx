@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './Flashcard.css';
 import { FaEdit } from 'react-icons/fa';
+import ConfirmationModal from './ConfirmationModal';
 
 const Flashcard = ({ id, question, answer, updateFlashcard, deleteFlashcard }) => {
   const [flipped, setFlipped] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editQuestion, setEditQuestion] = useState(question);
   const [editAnswer, setEditAnswer] = useState(answer);
+  const [showModal, setShowModal] = useState(false);
 
   const handleFlip = () => {
     setFlipped(!flipped);
@@ -21,14 +23,23 @@ const Flashcard = ({ id, question, answer, updateFlashcard, deleteFlashcard }) =
     e.preventDefault();
     updateFlashcard({ id, question: editQuestion, answer: editAnswer });
     setIsEditing(false);
-    setFlipped(false); 
+    setFlipped(!flipped); 
   };
 
-  const handleDelete = (e) => {
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation()
+    setShowModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    deleteFlashcard(id);
+    setShowModal(false);
+  };
+
+  const handleCancelDelete = (e) => {
     e.stopPropagation();
-    if (window.confirm('Are you sure you want to delete this flashcard?')) {
-      deleteFlashcard(id);
-    }
+    setShowModal(false);
   };
 
   return (
@@ -53,8 +64,11 @@ const Flashcard = ({ id, question, answer, updateFlashcard, deleteFlashcard }) =
               />
               <div className="edit-form-buttons">
                 <button type="submit">Save</button>
-                <button type="button" onClick={handleDelete} className="delete-button">Delete</button>
-                <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+                <button type="button" onClick={handleDeleteClick} className="delete-button">Delete</button>
+                <button type="button" onClick={(e) =>{
+                  setIsEditing(false)
+                  e.stopPropagation()
+                }}>Cancel</button>
               </div>
             </form>
           </div>
@@ -73,6 +87,11 @@ const Flashcard = ({ id, question, answer, updateFlashcard, deleteFlashcard }) =
             </div>
           </>
         )}
+        <ConfirmationModal
+        isOpen={showModal}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
       </div>
     </div>
   );

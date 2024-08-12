@@ -1,12 +1,57 @@
+/* App container styles */
 .App {
-    text-align: center;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
+  text-align: center;
+  background: linear-gradient(135deg, #1d1d1d, #2e2e2e); /* Gradient background */
+  min-height: 100vh;
+  padding: 40px; /* Increased padding */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  color: #e0e0e0; /* Light text color for better readability */
+  overflow: hidden; /* Prevent any overflow issues */
+}
+
+/* Heading styles */
+h1 {
+  color: #f0f0f0; /* Lighter color for the heading */
+  font-size: 3rem; /* Larger font size */
+  margin-bottom: 20px; /* Spacing below the heading */
+  font-weight: 700; /* Bold weight */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Additional effects */
+h1:hover {
+  color: #ff5722; /* Change color on hover */
+}
+
+.App button {
+  background-color: #ff5722; /* Vibrant button color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.App button:hover {
+  background-color: #000dff; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+.App a {
+  color: #ff5722; /* Link color */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.App a:hover {
+  color: #e64a19; /* Darker shade on hover */
+}
+
+body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
