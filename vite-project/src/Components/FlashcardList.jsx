@@ -91,7 +91,7 @@ const FlashcardList = () => {
                 />
               )}
               <div className="navigation-buttons">
-              <button onClick={showPreviousCard}>Previous</button>
+              <button onClick={showPreviousCard}>Prev</button>
               <button onClick={showNextCard}>Next</button>
             </div>
             </div>
