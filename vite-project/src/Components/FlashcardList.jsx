@@ -16,7 +16,7 @@ const FlashcardList = () => {
         setLoading(false);
       }).catch((error) => {
         console.error("There was an error fetching the flashcards!", error);
-        setLoading(false); // Set loading to false in case of error
+        setLoading(false); 
       });
   }, []);
 
@@ -72,15 +72,14 @@ const FlashcardList = () => {
     <div className="flashcard-list">
       <FlashcardForm addFlashcard={addFlashcard} />
       <div className='card-container'>
-        {/* Show the loader if loading is true */}
+
         {loading ? (
           <>
             <span className="loader"></span>
-            <p style={{ "color": "black" }}>Loading....</p>
+            <p style={{ "color": "black" }}>Loading...</p>
           </>
         ) : (
           <>
-            {/* Display the main flashcard with navigation buttons */}
             <div className="main-flashcard">
               {flashcards.length > 0 && (
                 <Flashcard
@@ -95,9 +94,6 @@ const FlashcardList = () => {
               <button onClick={showNextCard}>Next</button>
             </div>
             </div>
-            
-            
-            {/* Display the rest of the flashcards below the main one */}
             <div className="flashcard-grid">
               {flashcards.map((card) => (
                 <Flashcard
