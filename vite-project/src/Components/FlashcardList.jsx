@@ -5,11 +5,18 @@ import './FlashcardList.css';
 
 const FlashcardList = () => {
   const [flashcards, setFlashcards] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('https://flashcardsoumya.onrender.com/api/flashcards')
       .then((response) => response.json())
-      .then((data) => setFlashcards(data));
+      .then((data) => {
+        setFlashcards(data);
+        setLoading(false);
+      }).catch((error) => {
+        console.error("There was an error fetching the flashcards!", error);
+        setLoading(false); // Set loading to false in case of error
+      });
   }, []);
 
   const addFlashcard = (newFlashcard) => {
@@ -52,16 +59,26 @@ const FlashcardList = () => {
 
   return (
     <div className="flashcard-list">
-      <FlashcardForm addFlashcard={addFlashcard} />
-      {flashcards.map((card) => (
-        <Flashcard
-          key={card.id}
-          {...card}
-          updateFlashcard={updateFlashcard}
-          deleteFlashcard={deleteFlashcard}
-        />
-      ))}
+    <FlashcardForm addFlashcard={addFlashcard} />
+    <div className='card-container'>
+      {/* Show the loader if loading is true */}
+      {loading ? (
+        <>
+        <span className="loader"></span>
+        <p style={{"color":"black"}}>Loading....</p></>
+      ) : (
+        // Display the flashcards if loading is false
+        flashcards.map((card) => (
+          <Flashcard
+            key={card.id}
+            {...card}
+            updateFlashcard={updateFlashcard}
+            deleteFlashcard={deleteFlashcard}
+          />
+        ))
+      )}
     </div>
+  </div>
   );
 };
 

@@ -40,7 +40,7 @@
 
 @media (min-width: 768px) {
   .flashcard-list {
-    flex-direction: row;
+    /* flex-direction: row; */
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
@@ -88,3 +88,46 @@
   width: 50%;
 }
 
+.loader {
+  border: 2px solid #FFF;
+  width: 48px;
+  height: 48px;
+  background: #FF3D00;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 24px solid;
+  border-color: transparent #FFF;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* One card per row by default */
+  gap: 20px; /* Space between cards */
+}
+
+@media (min-width: 900px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* Two cards per row on larger screens */
+  }
+}
