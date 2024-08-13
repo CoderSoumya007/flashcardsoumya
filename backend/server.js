@@ -9,11 +9,9 @@ const url = require('url');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// MySQL connection
 const parsedUrl = url.parse(process.env.DATABASE_URL);
 const db = mysql.createConnection({
   host: parsedUrl.hostname,
@@ -31,10 +29,8 @@ db.connect((err) => {
   console.log('Connected to MySQL');
 });
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
-// API routes
 app.get('/', (req, res) => {
   res.send("Server is running!");
 })
@@ -50,17 +46,16 @@ app.get('/api/flashcards', (req, res) => {
 app.post('/api/flashcards', (req, res) => {
   const { question, answer } = req.body;
 
-  // Fetch the current maximum ID
+
   db.query('SELECT MAX(id) AS maxId FROM flashcards', (err, result) => {
     if (err) {
       return res.status(500).send(err);
     }
 
-    // Determine the new ID
+    
     const maxId = result[0].maxId;
     const newId = (maxId === null) ? 1 : maxId + 1; // Start with 1 if no records exist
 
-    // Insert the new flashcard with the new ID
     db.query(
       'INSERT INTO flashcards (id, question, answer) VALUES (?, ?, ?)',
       [newId, question, answer],
