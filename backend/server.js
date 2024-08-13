@@ -95,11 +95,6 @@ app.delete('/api/flashcards/:id', (req, res) => {
   });
 });
 
-// Route all requests to the React app
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
-// });
-
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
