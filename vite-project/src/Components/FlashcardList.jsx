@@ -9,7 +9,7 @@ const FlashcardList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/flashcards')
+    fetch('https://flashcardsoumya.onrender.com/api/flashcards')
       .then((response) => response.json())
       .then((data) => {
         setFlashcards(data);
@@ -21,7 +21,7 @@ const FlashcardList = () => {
   }, []);
 
   const addFlashcard = (newFlashcard) => {
-    fetch('http://localhost:5000/api/flashcards', {
+    fetch('https://flashcardsoumya.onrender.com/api/flashcards', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const FlashcardList = () => {
   };
 
   const updateFlashcard = (updatedFlashcard) => {
-    fetch(`http://localhost:5000/api/flashcards/${updatedFlashcard.id}`, {
+    fetch(`https://flashcardsoumya.onrender.com/api/flashcards/${updatedFlashcard.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const FlashcardList = () => {
   };
 
   const deleteFlashcard = (id) => {
-    fetch(`http://localhost:5000/api/flashcards/${id}`, {
+    fetch(`https://flashcardsoumya.onrender.com/api/flashcards/${id}`, {
       method: 'DELETE',
     }).then(() => {
       setFlashcards(flashcards.filter((card) => card.id !== id));
