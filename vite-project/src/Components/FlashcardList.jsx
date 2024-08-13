@@ -5,10 +5,11 @@ import './FlashcardList.css';
 
 const FlashcardList = () => {
   const [flashcards, setFlashcards] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch('https://flashcardsoumya.onrender.com/api/flashcards')
+    fetch('http://localhost:5000/api/flashcards')
       .then((response) => response.json())
       .then((data) => {
         setFlashcards(data);
@@ -20,7 +21,7 @@ const FlashcardList = () => {
   }, []);
 
   const addFlashcard = (newFlashcard) => {
-    fetch('https://flashcardsoumya.onrender.com/api/flashcards', {
+    fetch('http://localhost:5000/api/flashcards', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ const FlashcardList = () => {
   };
 
   const updateFlashcard = (updatedFlashcard) => {
-    fetch(`https://flashcardsoumya.onrender.com/api/flashcards/${updatedFlashcard.id}`, {
+    fetch(`http://localhost:5000/api/flashcards/${updatedFlashcard.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -50,36 +51,69 @@ const FlashcardList = () => {
   };
 
   const deleteFlashcard = (id) => {
-    fetch(`https://flashcardsoumya.onrender.com/api/flashcards/${id}`, {
+    fetch(`http://localhost:5000/api/flashcards/${id}`, {
       method: 'DELETE',
     }).then(() => {
       setFlashcards(flashcards.filter((card) => card.id !== id));
     });
   };
 
+  const showNextCard = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
+  };
+
+  const showPreviousCard = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? flashcards.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <div className="flashcard-list">
-    <FlashcardForm addFlashcard={addFlashcard} />
-    <div className='card-container'>
-      {/* Show the loader if loading is true */}
-      {loading ? (
-        <>
-        <span className="loader"></span>
-        <p style={{"color":"black"}}>Loading....</p></>
-      ) : (
-        // Display the flashcards if loading is false
-        flashcards.map((card) => (
-          <Flashcard
-            key={card.id}
-            {...card}
-            updateFlashcard={updateFlashcard}
-            deleteFlashcard={deleteFlashcard}
-          />
-        ))
-      )}
+      <FlashcardForm addFlashcard={addFlashcard} />
+      <div className='card-container'>
+        {/* Show the loader if loading is true */}
+        {loading ? (
+          <>
+            <span className="loader"></span>
+            <p style={{ "color": "black" }}>Loading....</p>
+          </>
+        ) : (
+          <>
+            {/* Display the main flashcard with navigation buttons */}
+            <div className="main-flashcard">
+              {flashcards.length > 0 && (
+                <Flashcard
+                  key={flashcards[currentIndex].id}
+                  {...flashcards[currentIndex]}
+                  updateFlashcard={updateFlashcard}
+                  deleteFlashcard={deleteFlashcard}
+                />
+              )}
+              <div className="navigation-buttons">
+              <button onClick={showPreviousCard}>Previous</button>
+              <button onClick={showNextCard}>Next</button>
+            </div>
+            </div>
+            
+            
+            {/* Display the rest of the flashcards below the main one */}
+            <div className="flashcard-grid">
+              {flashcards.map((card) => (
+                <Flashcard
+                  key={card.id}
+                  {...card}
+                  updateFlashcard={updateFlashcard}
+                  deleteFlashcard={deleteFlashcard}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </div>
-  </div>
   );
+  
 };
 
 export default FlashcardList;
