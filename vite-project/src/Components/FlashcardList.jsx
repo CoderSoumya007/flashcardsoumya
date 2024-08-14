@@ -75,7 +75,7 @@ const FlashcardList = () => {
         {loading ? (
           <>
             <span className="loader"></span>
-            <p style={{ "color": "black" }}>Loading....</p>
+            <p style={{ "color": "black" }}>Loading...</p>
           </>
         ) : (
           <>
