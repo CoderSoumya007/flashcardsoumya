@@ -9,7 +9,7 @@ const FlashcardList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch('https://flashcardsoumya.onrender.com/api/flashcards')
+    fetch('http://ec2-13-48-248-187.eu-north-1.compute.amazonaws.com:5000/api/flashcards')
       .then((response) => response.json())
       .then((data) => {
         setFlashcards(data);
@@ -21,7 +21,7 @@ const FlashcardList = () => {
   }, []);
 
   const addFlashcard = (newFlashcard) => {
-    fetch('https://flashcardsoumya.onrender.com/api/flashcards', {
+    fetch('http://ec2-13-48-248-187.eu-north-1.compute.amazonaws.com:5000/api/flashcards', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const FlashcardList = () => {
   };
 
   const updateFlashcard = (updatedFlashcard) => {
-    fetch(`https://flashcardsoumya.onrender.com/api/flashcards/${updatedFlashcard.id}`, {
+    fetch(`http://ec2-13-48-248-187.eu-north-1.compute.amazonaws.com:5000/api/flashcards/${updatedFlashcard.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const FlashcardList = () => {
   };
 
   const deleteFlashcard = (id) => {
-    fetch(`https://flashcardsoumya.onrender.com/api/flashcards/${id}`, {
+    fetch(`http://ec2-13-48-248-187.eu-north-1.compute.amazonaws.com:5000/api/flashcards/${id}`, {
       method: 'DELETE',
     }).then(() => {
       setFlashcards(flashcards.filter((card) => card.id !== id));
