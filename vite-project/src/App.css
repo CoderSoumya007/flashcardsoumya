@@ -1,57 +1,57 @@
 /* App container styles */
 .App {
   text-align: center;
-  background: linear-gradient(135deg, #1d1d1d, #2e2e2e); /* Gradient background */
+  background: linear-gradient(135deg, #1d1d1d, #2e2e2e); 
   min-height: 100vh;
-  padding: 40px; /* Increased padding */
-  font-family: 'Roboto', sans-serif; /* Modern font */
-  color: #e0e0e0; /* Light text color for better readability */
-  overflow: hidden; /* Prevent any overflow issues */
+  padding: 40px; 
+  font-family: 'Roboto', sans-serif; 
+  color: #e0e0e0;
+  overflow: hidden;
 }
 
 /* Heading styles */
 h1 {
-  color: #f0f0f0; /* Lighter color for the heading */
-  font-size: 3rem; /* Larger font size */
-  margin-bottom: 20px; /* Spacing below the heading */
-  font-weight: 700; /* Bold weight */
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: #f0f0f0;
+  font-size: 3rem; 
+  margin-bottom: 20px; 
+  font-weight: 700;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); 
+  transition: color 0.3s ease;
 }
 
-/* Additional effects */
+
 h1:hover {
-  color: #ff5722; /* Change color on hover */
+  color: #ff5722; 
 }
 
 .App button {
-  background-color: #ff5722; /* Vibrant button color */
+  background-color: #ff5722;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .App button:hover {
-  background-color: #000dff; /* Darker shade on hover */
-  transform: scale(1.05); /* Slight scaling effect */
+  background-color: #000dff; 
+  transform: scale(1.05);
 }
 
 .App a {
-  color: #ff5722; /* Link color */
+  color: #ff5722;
   text-decoration: none;
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease;
 }
 
 .App a:hover {
-  color: #e64a19; /* Darker shade on hover */
+  color: #e64a19; 
 }
 
 body {
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
 }

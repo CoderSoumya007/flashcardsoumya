@@ -83,8 +83,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
-  overflow: hidden; /* Hide overflow content */
+  box-sizing: border-box; 
+  overflow: hidden; 
 }
 
 /* Form styling */

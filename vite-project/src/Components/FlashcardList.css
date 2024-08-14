@@ -131,7 +131,7 @@
   .card-container {
     display: flex;
     flex-direction: column;
-    grid-template-columns: repeat(2, 1fr); /* Two cards per row on larger screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
